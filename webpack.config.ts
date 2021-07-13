@@ -71,6 +71,7 @@ const config: webpack.Configuration = {
     new HtmlWebpackPlugin({
       template: './index.html',
       filename: 'index.html',
+      hash: true,
     }),
   ],
   output: {
