@@ -3,6 +3,7 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import webpack from 'webpack';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -67,6 +68,10 @@ const config: webpack.Configuration = {
       // },
     }),
     new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      filename: 'index.html',
+    }),
   ],
   output: {
     path: path.join(__dirname, 'dist'),
