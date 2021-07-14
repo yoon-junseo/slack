@@ -14,17 +14,17 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
-      '@hooks': path.resolve(__dirname, 'hooks'),
-      '@components': path.resolve(__dirname, 'components'),
-      '@layouts': path.resolve(__dirname, 'layouts'),
-      '@pages': path.resolve(__dirname, 'pages'),
-      '@utils': path.resolve(__dirname, 'utils'),
-      '@typings': path.resolve(__dirname, 'typings'),
-      '@router': path.resolve(__dirname, 'router'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@layouts': path.resolve(__dirname, 'src/layouts'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@typings': path.resolve(__dirname, 'src/typings'),
+      '@router': path.resolve(__dirname, 'src/router'),
     },
   },
   entry: {
-    app: './client',
+    app: './src/index',
   },
   module: {
     rules: [
