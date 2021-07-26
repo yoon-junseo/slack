@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Header, Form, Label, Input, Error, Button, LinkContainer } from '@pages/SignUp/style';
+import { Header, Form, Label, Input, Error, Button, LinkContainer } from '@pages/SignUp/styles';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
