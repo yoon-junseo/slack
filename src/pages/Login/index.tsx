@@ -1,19 +1,56 @@
 import React, { useCallback, useState } from 'react';
-import { Header, Form, Label, Input, Error, Button, LinkContainer } from '@pages/SignUp/styles';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import useInput from '@hooks/useInput';
+import { Header, Form, Label, Input, Error, Button, LinkContainer } from '@pages/SignUp/styles';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [logInError, setLoginError] = useState('');
+  const [logInError, setLoginError] = useState(false);
 
-  const onChangeEmail = useCallback(() => {}, []);
-  const onChangePassword = useCallback(() => {}, []);
+  const onChangeEmail = useCallback(
+    (e) => {
+      setEmail(e.target.value);
+      console.log(e.target.value);
+    },
+    [email],
+  );
+
+  const onChangePassword = useCallback(
+    (e) => {
+      setPassword(e.target.value);
+    },
+    [password],
+  );
+
+  const onSubmitLogin = useCallback(
+    (e) => {
+      e.preventDefault();
+      setLoginError(false);
+      axios
+        .post(
+          '/api/users/login',
+          { email, password },
+          {
+            withCredentials: true,
+          },
+        )
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((error) => {
+          setLoginError(error.response?.data?.statusCode === 401);
+        });
+      console.log(email, password);
+    },
+    [email, password],
+  );
 
   return (
     <div id="container">
       <Header>Sleact</Header>
-      <Form>
+      <Form onSubmit={onSubmitLogin}>
         <Label id="email-label">
           <span>이메일 주소</span>
           <div>
