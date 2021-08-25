@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import useInput from '@hooks/useInput';
 import { Header, Form, Label, Input, Error, Button, LinkContainer } from '@pages/SignUp/styles';
+import useSWR from 'swr';
+import fetcher from '@utils/fetcher';
 
 const Login = () => {
+  const { data, error, revalidate } = useSWR('/api/users', fetcher);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [logInError, setLoginError] = useState(false);
@@ -37,12 +40,11 @@ const Login = () => {
           },
         )
         .then((res) => {
-          console.log(res);
+          revalidate();
         })
         .catch((error) => {
           setLoginError(error.response?.data?.statusCode === 401);
         });
-      console.log(email, password);
     },
     [email, password],
   );

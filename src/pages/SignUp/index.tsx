@@ -37,7 +37,7 @@ const SignUp = () => {
         setSignUpError('');
         setSignUpSuccess(false);
         axios
-          .post('/api/users', { email, nickname, password })
+          .post('/api/users', { email, nickname, password }, { withCredentials: true })
           .then((response) => {
             console.log(response);
             setSignUpSuccess(true);
