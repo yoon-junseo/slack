@@ -9,7 +9,7 @@ const SignUp = loadable(() => import('@pages/SignUp'));
 const Router = () => {
   return (
     <Switch>
-      {/* <Redirect exact path="/" to="/login" /> */}
+      <Redirect exact path="/" to="/login" />
       <Route path="/" component={Home} exact />
       <Route path="/login" component={LogIn} />
       <Route path="/signup" component={SignUp} />
