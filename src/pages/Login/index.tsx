@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import useInput from '@hooks/useInput';
 import { Header, Form, Label, Input, Error, Button, LinkContainer } from '@pages/SignUp/styles';
@@ -48,6 +48,14 @@ const Login = () => {
     },
     [email, password],
   );
+
+  if (data === undefined) {
+    return <div>로딩중...</div>;
+  }
+
+  if (data) {
+    return <Redirect to="/workspace/channel" />;
+  }
 
   return (
     <div id="container">
