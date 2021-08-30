@@ -7,7 +7,7 @@ import useSWR from 'swr';
 import fetcher from '@utils/fetcher';
 
 const Login = () => {
-  const { data, error, revalidate } = useSWR('/api/users', fetcher);
+  const { data, error, mutate } = useSWR('/api/users', fetcher);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [logInError, setLoginError] = useState(false);
@@ -15,7 +15,6 @@ const Login = () => {
   const onChangeEmail = useCallback(
     (e) => {
       setEmail(e.target.value);
-      console.log(e.target.value);
     },
     [email],
   );
@@ -40,7 +39,7 @@ const Login = () => {
           },
         )
         .then((res) => {
-          revalidate();
+          mutate(res.data, false);
         })
         .catch((error) => {
           setLoginError(error.response?.data?.statusCode === 401);
